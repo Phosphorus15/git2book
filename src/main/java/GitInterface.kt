@@ -1,6 +1,7 @@
 import org.kohsuke.github.GHContent
 import org.kohsuke.github.GHRepository
 import org.kohsuke.github.GitHub
+import java.io.InputStream
 
 class GitInterface(private val github: GitHub) {
 
@@ -37,9 +38,17 @@ abstract class Entry {
 
     abstract fun listEntries(): List<Entry>
 
+    abstract fun getPossibleEncoding(): String?
+
+    abstract fun getPossibleContent(): InputStream? // open connection
+
 }
 
 class GHEntryImpl(private val content: GHContent) : Entry() {
+    override fun getPossibleEncoding(): String? = content.encoding
+
+    override fun getPossibleContent(): InputStream? = content.read()
+
     override val name: String = content.name
 
     override val isDirectory: Boolean = content.isDirectory
@@ -51,7 +60,11 @@ class GHEntryImpl(private val content: GHContent) : Entry() {
 }
 
 class VirtualGHRoot(private val repo: GHRepository) : Entry() {
-    override val name: String = "/"
+    override fun getPossibleEncoding(): String? = null
+
+    override fun getPossibleContent(): InputStream? = null
+
+    override val name: String = ""
     override val isDirectory: Boolean = true
 
     override fun listEntries(): List<Entry> = repo.getDirectoryContent("/").map { GHEntryImpl(it) }
@@ -67,6 +80,17 @@ private class GHRepositoryImpl(repo: GHRepository) : Repository() {
         rootEntry = VirtualGHRoot(repo)
     }
 
+}
+
+fun Entry.walk(lbd: (Entry, String) -> Unit) {
+    if (isDirectory && name == "") walk("", lbd)
+    else lbd(this, name)
+}
+
+private fun Entry.walk(path: String, lbd: (Entry, String) -> Unit) {
+    if (isDirectory) listEntries().forEach {
+        it.walk("$path$name/", lbd)
+    } else lbd(this, path + name)
 }
 
 fun main(args: Array<String>) {
