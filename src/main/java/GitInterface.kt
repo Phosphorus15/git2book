@@ -24,6 +24,10 @@ abstract class Repository {
 
     abstract val rootEntry: Entry
 
+    abstract val description: String
+
+    abstract val url: String
+
     override fun toString(): String {
         return "$name / $languages"
     }
@@ -72,6 +76,8 @@ class VirtualGHRoot(private val repo: GHRepository) : Entry() {
 }
 
 private class GHRepositoryImpl(repo: GHRepository) : Repository() {
+    override val url: String = repo.htmlUrl.toString()
+    override val description: String = repo.description
     override val name: String = repo.name
     override val languages: List<String> = repo.listLanguages().keys.toList()
     override val rootEntry: Entry
