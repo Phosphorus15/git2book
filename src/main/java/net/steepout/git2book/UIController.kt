@@ -1,3 +1,5 @@
+package net.steepout.git2book
+
 import org.kohsuke.github.GitHub
 import java.awt.Dimension
 import java.io.FileOutputStream
@@ -10,7 +12,7 @@ fun main(args: Array<String>) {
         title = "Export from github"
         size = Dimension(300, 60)
         defaultCloseOperation = EXIT_ON_CLOSE
-        contentPane = ConvertUI(::execute).mainPanel // exportation interface
+        contentPane = ConvertGui(::execute).mainPanel // exportation interface
         setLocationRelativeTo(null)
         isVisible = true
     }

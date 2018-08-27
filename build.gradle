@@ -29,7 +29,16 @@ compileTestKotlin {
 }
 
 task 'mkdirs' doLast {
-    sourceSets*.java.srcDirs*.each{
+    sourceSets*.java.srcDirs*.each {
         it.mkdirs()
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'net.steepout.git2book.UIControllerKt'
+    }
+    into ("lib") {
+        from configurations.runtime
     }
 }

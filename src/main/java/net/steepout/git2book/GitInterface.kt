@@ -1,3 +1,5 @@
+package net.steepout.git2book
+
 import org.kohsuke.github.GHContent
 import org.kohsuke.github.GHRepository
 import org.kohsuke.github.GitHub

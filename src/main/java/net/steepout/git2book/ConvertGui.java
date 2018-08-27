@@ -1,3 +1,5 @@
+package net.steepout.git2book;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,12 +8,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.function.BiConsumer;
 
-public class ConvertUI implements KeyListener, ActionListener {
-    public JPanel mainPanel;
-    private JTextField textField;
+public class ConvertGui implements ActionListener, KeyListener {
     private JButton exportButton;
+    private JTextField textField;
+    public JPanel mainPanel;
 
-    public ConvertUI(BiConsumer<String, Runnable> export) {
+    public ConvertGui(BiConsumer<String, Runnable> export) {
         textField.addKeyListener(this);
         textField.addActionListener(this);
         textField.setText("Username/Repository");

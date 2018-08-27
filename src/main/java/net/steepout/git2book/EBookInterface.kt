@@ -1,3 +1,5 @@
+package net.steepout.git2book
+
 import com.itextpdf.text.*
 import com.itextpdf.text.pdf.PdfDestination
 import com.itextpdf.text.pdf.PdfOutline
