@@ -14,4 +14,7 @@ How to use:
  1. build it
  1. run the kotlin class 'UIController'
  1. you'll see the GUI below :
+ 
+  ![avatar](https://github.com/Phosphorus15/git2book/blob/master/preview.png?raw=true)
 
+well, needless to say, use it directly.
