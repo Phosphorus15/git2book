@@ -1,3 +1,5 @@
+import net.steepout.git2book.GitInterface
+import net.steepout.git2book.walk
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

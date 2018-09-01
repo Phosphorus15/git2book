@@ -1,3 +1,5 @@
+import net.steepout.git2book.GitInterface
+import net.steepout.git2book.pdfExportation
 import org.junit.Test
 import org.kohsuke.github.GitHub
 import java.io.File
@@ -7,10 +9,6 @@ class EBookInterfaceKtTest {
 
     @Test
     fun pdfExportation() {
-        GitHub.connectAnonymously().apply {
-            GitInterface(this).gatherRepo("Phosphorus15", "ExpectedVirus").apply {
-                pdfExportation(FileOutputStream(File("./test.pdf")), this)
-            }
-        }
+
     }
 }
