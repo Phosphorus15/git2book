@@ -9,8 +9,9 @@ a file easily.
 (consider reading them in **kindle** ✌️)
 
 How to use:
- 9. clone it from github
- 9. build it
- 9. run the kotlin class 'UIController'
- 9. you'll see the GUI below :
+
+ 1. clone it from github
+ 1. build it
+ 1. run the kotlin class 'UIController'
+ 1. you'll see the GUI below :
 
